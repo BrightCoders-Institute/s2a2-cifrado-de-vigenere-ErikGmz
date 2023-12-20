@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 require_relative '../inheritance_classes/arguments_data_validation'
+require_relative '../inheritance_classes/encoding_control'
 
 # Class to convert an alphabet letter to its corresponding secuential number.
-class CharacterToIntegerEncoding < ArgumentsDataValidation
+class CharacterToIntegerEncoding < EncodingControl
   LETTERS_MAPPING = Hash[(:A..:Z).to_a.insert(14, :Ñ).each_with_index.map do |letter, index|
     [letter, index]
   end]
@@ -20,23 +21,18 @@ class CharacterToIntegerEncoding < ArgumentsDataValidation
 
   private
 
-  def check_arguments_validity(*arguments)
-    arguments.each do |argument|
-      raise TypeError unless argument.is_a?(String)
-
-      raise ArgumentError unless LETTERS_MAPPING.keys.include?(argument.upcase.to_sym)
+  def leave_original_if_not_alphabetic!(character)
+    unless LETTERS_MAPPING.keys.include?(character.to_s.upcase.to_sym)
+      @integer_encoding = character.is_a?(String) ? character[0] : nil
+      return true
     end
+    false
   end
 
   def config_character!(character)
-    if character.nil?
-      @integer_encoding = nil
-      return
-    end
+    return if leave_original_if_not_alphabetic!(character)
 
-    check_arguments_validity(character)
-
-    @character = character[0].upcase
+    @character = character.to_s.upcase
     @integer_encoding = LETTERS_MAPPING[@character.to_sym]
   end
 end

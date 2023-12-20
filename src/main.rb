@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require './classes/vigenere_cipher'
-require './classes/format_cipher_code'
-require './classes/character_to_integer_encoding'
+require_relative './classes/vigenere_cipher'
 
 message, cipher_code = ARGV
-vigenere_cipher = VigenereCipher.new(message, cipher_code)
+vigenere_cipher = VigenereCipher.new('HOLA', 'SECRETO')

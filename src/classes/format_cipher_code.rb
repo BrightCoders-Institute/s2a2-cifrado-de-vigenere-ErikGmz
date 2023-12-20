@@ -10,9 +10,10 @@ class FormatCipherCode < ArgumentsDataValidation
   def initialize(message, cipher_code)
     super
     check_arguments_validity(message, cipher_code)
+    check_cipher_code_validity(cipher_code)
 
     @message = message.upcase
-    @cipher_code = cipher_code.upcase
+    @cipher_code = cipher_code.upcase.gsub(/[^A-ZÑ]+/, '')
     generate_formatted_cipher_code!
   end
 
@@ -25,8 +26,9 @@ class FormatCipherCode < ArgumentsDataValidation
 
   def cipher_code=(cipher_code)
     check_arguments_validity(cipher_code)
+    check_cipher_code_validity(cipher_code)
 
-    @cipher_code = cipher_code.upcase
+    @cipher_code = cipher_code.upcase.gsub(/[^A-ZÑ]+/, '')
     generate_formatted_cipher_code!
   end
 
@@ -36,13 +38,19 @@ class FormatCipherCode < ArgumentsDataValidation
     arguments.each do |argument|
       raise TypeError unless argument.is_a?(String)
 
-      raise ArgumentError unless argument.upcase.match(/[A-ZÑ]+/)
+      raise ArgumentError if argument.empty?
     end
   end
 
+  def check_cipher_code_validity(cipher_code)
+    raise ArgumentError if cipher_code.upcase.gsub(/[^A-ZÑ]+/, '').empty?
+  end
+
   def generate_formatted_cipher_code!
+    message_with_alphabetic_characters = @message.gsub(/[^A-ZÑ]+/, '')
+
     adjusted_cipher_code = @cipher_code.dup
-    adjusted_cipher_code << @cipher_code while adjusted_cipher_code.length < @message.length
+    adjusted_cipher_code << @cipher_code while adjusted_cipher_code.length < message_with_alphabetic_characters.length
     @formatted_code = adjusted_cipher_code[0...@message.length]
   end
 end

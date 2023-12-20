@@ -15,9 +15,7 @@ class TestIntegerToCharacterDecoding < TestArgumentTypes
   end
 
   def test_arguments(argument)
-    assert_raises TypeError do
-      generate_decoder(argument)
-    end
+    assert_nil generate_decoder(argument).character
   end
 
   public
@@ -38,11 +36,24 @@ class TestIntegerToCharacterDecoding < TestArgumentTypes
     end
   end
 
+  def test_strings
+    assert_equal 'A', generate_decoder('AA').character
+    assert_equal '0', generate_decoder('0').character
+
+    # Test a string with all lowercase letters joined.
+    assert_equal UPPERCASE_LETTERS.first, generate_decoder(UPPERCASE_LETTERS.join).character
+  end
+
   def test_number_arguments
     test_arguments(0.0)
   end
 
-  def test_nil_argument
-    assert_nil generate_decoder.character
+  def test_structure_arguments
+    test_arguments([])
+    test_arguments({})
+
+    ALPHABET_NUMBERS_SEQUENCE.to_a.map do |integer|
+      assert_nil generate_decoder(integer.to_s.to_sym).character
+    end
   end
 end

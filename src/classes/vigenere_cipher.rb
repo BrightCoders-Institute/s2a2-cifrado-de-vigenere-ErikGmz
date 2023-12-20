@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
-require_relative './character_to_integer_encoding'
 require_relative './format_cipher_code'
+require_relative './character_to_integer_encoding'
+require_relative './integer_to_character_decoding'
 
 # Class to apply Vigenère cipher to a string using a code.
 class VigenereCipher
   TOTAL_ALPHABET_LETTERS_COUNT = 26
-  attr_reader :encoded_text
+  attr_reader :encoded_message
 
-  def initialize(cipher_code_formatter, character_encoder, character_decoder)
-    @cipher_code_formatter = cipher_code_formatter
-    @character_encoder = character_encoder
-    @character_decoder = character_decoder
+  def initialize(message, cipher_code)
+    @character_encoder = CharacterToIntegerEncoding.new
+    @character_decoder = IntegerToCharacterDecoding.new
+    @cipher_code_formatter = FormatCipherCode.new(message, cipher_code)
     generate_encoded_message!
   end
 
@@ -21,7 +22,7 @@ class VigenereCipher
     integers_message = encode_string_to_numbers(@cipher_code_formatter.message)
     integers_code = encode_string_to_numbers(@cipher_code_formatter.formatted_code)
     encoded_message_integers = cipher_original_message(integers_message, integers_code)
-    @encoded_text = decode_numbers_string(encoded_message_integers)
+    @encoded_message = decode_numbers_array(encoded_message_integers)
   end
 
   def encode_string_to_numbers(string)
@@ -32,10 +33,16 @@ class VigenereCipher
   end
 
   def cipher_original_message(integers_message, integers_code)
-    raise ArgumentError if integers_message.length != integers_code.length
+    raise ArgumentError if integers_message.length < integers_code.length
 
-    integers_message.zip(integers_code).map do |integers_pair|
-      integers_pair.sum % (TOTAL_ALPHABET_LETTERS_COUNT + 1)
+    integers_code_index = -1
+    integers_message.map do |integer|
+      if integer.is_a?(Integer)
+        integers_code_index += 1
+        (integer + integers_code[integers_code_index]) % (TOTAL_ALPHABET_LETTERS_COUNT + 1)
+      else
+        integer
+      end
     end
   end
 

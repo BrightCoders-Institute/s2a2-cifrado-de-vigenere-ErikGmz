@@ -8,6 +8,5 @@ class ArgumentsDataValidation
 
   public
 
-  def initialize(*arguments)
-  end
+  def initialize(*arguments); end
 end

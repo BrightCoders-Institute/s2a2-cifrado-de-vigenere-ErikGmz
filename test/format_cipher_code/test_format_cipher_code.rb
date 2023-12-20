@@ -14,6 +14,18 @@ class TestFormatCipherCode < TestArgumentTypes
     test_arguments_with_error_name(argument, TypeError)
   end
 
+  def test_cipher_code_argument(argument, error_name)
+    assert_raises error_name do
+      FormatCipherCode.new('TEST', argument)
+    end
+
+    assert_equal 'T', FormatCipherCode.new(argument, 'TEST').formatted_code
+
+    assert_raises error_name do
+      FormatCipherCode.new(argument, argument)
+    end
+  end
+
   def test_arguments_with_error_name(argument, error_name)
     assert_raises error_name do
       FormatCipherCode.new('TEST', argument)
@@ -46,14 +58,16 @@ class TestFormatCipherCode < TestArgumentTypes
     assert_equal 'CODC', generate_formatter('RuBy', 'CoD').formatted_code
   end
 
-  def test_empty_string_arguments
-    test_arguments_with_error_name('', ArgumentError)
-  end
-
   def test_strings_with_lengths_combinations
     assert_equal 'CCCC', generate_formatter('RUBY', 'C').formatted_code
     assert_equal 'R', generate_formatter('C', 'RUBY').formatted_code
     assert_equal 'MESSAG', generate_formatter('PYTHON', 'MESSAG').formatted_code
+  end
+
+  def test_strings_with_special_characters
+    assert_equal 'CCCC', generate_formatter('+-_!2RUBY.¨+-:', ',.´+C   ').formatted_code
+    assert_equal 'R', generate_formatter('C', ' +++.,,,,RUBY . .. . , , ').formatted_code
+    assert_equal 'MESSAG', generate_formatter('----___PYTHON _ _ - -', 'MESSAG').formatted_code
   end
 
   def test_alphabetic_characters
@@ -63,7 +77,11 @@ class TestFormatCipherCode < TestArgumentTypes
                                                               UPPERCASE_LETTERS_STRING).formatted_code
   end
 
+  def test_empty_string_arguments
+    test_arguments_with_error_name('', ArgumentError)
+  end
+
   def test_special_characters
-    SPECIAL_CHARACTERS.each { |special_character| test_arguments_with_error_name(special_character, ArgumentError) }
+    SPECIAL_CHARACTERS.each { |special_character| test_cipher_code_argument(special_character, ArgumentError) }
   end
 end
