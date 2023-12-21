@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../inheritance_test_classes/test_argument_types'
 require_relative '../../src/classes/character_to_integer_encoding'
+require_relative '../inheritance_test_classes/test_argument_types'
 
 # Class to test CharacterToIntegerEncoding class behavior with initialize method.
 class TestCharacterToIntegerEncoding < TestArgumentTypes
@@ -17,22 +17,6 @@ class TestCharacterToIntegerEncoding < TestArgumentTypes
 
   def test_arguments(argument)
     assert_nil generate_encoder(argument).integer_encoding
-  end
-
-  private
-
-  def test_all_alphabet_symbols
-    test_range = (0..26).to_a
-
-    # Test lowercase letters.
-    assert_equal test_range, (LOWERCASE_LETTERS.map do |letter|
-      generate_encoder(letter.to_sym).integer_encoding
-    end)
-
-    # Test uppercase letters.
-    assert_equal test_range, (UPPERCASE_LETTERS.map do |letter|
-      generate_encoder(letter.to_sym).integer_encoding
-    end)
   end
 
   public
@@ -66,7 +50,20 @@ class TestCharacterToIntegerEncoding < TestArgumentTypes
 
   def test_structure_arguments
     test_arguments([])
+    test_arguments([1, 2, 3])
     test_arguments({})
-    test_all_alphabet_symbols
+    test_arguments({ a: 1, b: 2 })
+  end
+
+  def test_all_alphabet_symbols
+    # Test lowercase letters.
+    LOWERCASE_LETTERS.each do |letter|
+      assert_nil generate_encoder(letter.to_sym).integer_encoding
+    end
+
+    # Test uppercase letters.
+    UPPERCASE_LETTERS.each do |letter|
+      assert_nil generate_encoder(letter.to_sym).integer_encoding
+    end
   end
 end

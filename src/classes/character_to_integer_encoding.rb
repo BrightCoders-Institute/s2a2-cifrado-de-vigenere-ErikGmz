@@ -22,7 +22,7 @@ class CharacterToIntegerEncoding < EncodingControl
   private
 
   def leave_original_if_not_alphabetic!(character)
-    unless LETTERS_MAPPING.keys.include?(character.to_s.upcase.to_sym)
+    unless LETTERS_MAPPING.keys.include?(character.to_s.upcase.to_sym) && character.is_a?(String)
       @integer_encoding = character.is_a?(String) ? character[0] : nil
       return true
     end

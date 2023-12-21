@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../inheritance_test_classes/test_argument_types'
 require_relative '../../src/classes/format_cipher_code'
+require_relative '../inheritance_test_classes/test_argument_types'
 
 # Class to test FormatCipherCode class behavior with initialize method.
 class TestFormatCipherCode < TestArgumentTypes
@@ -82,6 +82,8 @@ class TestFormatCipherCode < TestArgumentTypes
   end
 
   def test_special_characters
-    SPECIAL_CHARACTERS.each { |special_character| test_cipher_code_argument(special_character, ArgumentError) }
+    SPECIAL_CHARACTERS.each do |special_character|
+      test_cipher_code_argument(special_character, ArgumentError)
+    end
   end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../inheritance_test_classes/test_argument_types'
 require_relative '../../src/classes/integer_to_character_decoding'
+require_relative '../inheritance_test_classes/test_argument_types'
 
 # Class to test IntegerToCharacterDecoding class behavior with initialize method.
 class TestIntegerToCharacterDecoding < TestArgumentTypes
@@ -27,12 +27,10 @@ class TestIntegerToCharacterDecoding < TestArgumentTypes
   end
 
   def test_non_alphabet_numbers
-    test_numbers = ALPHABET_NUMBERS_SEQUENCE.to_a.delete_if { |number| ALPHABET_NUMBERS_SEQUENCE === number }
+    test_numbers = (0..100).to_a.delete_if { |number| ALPHABET_NUMBERS_SEQUENCE === number }
 
     test_numbers.each do |number|
-      assert_raises ArgumentError do
-        generate_decoder(number)
-      end
+      test_arguments(number)
     end
   end
 
@@ -40,7 +38,7 @@ class TestIntegerToCharacterDecoding < TestArgumentTypes
     assert_equal 'A', generate_decoder('AA').character
     assert_equal '0', generate_decoder('0').character
 
-    # Test a string with all lowercase letters joined.
+    # Test a string with all uppercase letters joined.
     assert_equal UPPERCASE_LETTERS.first, generate_decoder(UPPERCASE_LETTERS.join).character
   end
 

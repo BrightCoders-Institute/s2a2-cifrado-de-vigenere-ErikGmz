@@ -17,7 +17,9 @@ class TestArgumentTypes < Minitest::Test
 
   def test_structure_arguments
     test_arguments([])
+    test_arguments([1, 2, 3])
     test_arguments({})
+    test_arguments({ a: 1, b: 2 })
     test_arguments(:A)
   end
 

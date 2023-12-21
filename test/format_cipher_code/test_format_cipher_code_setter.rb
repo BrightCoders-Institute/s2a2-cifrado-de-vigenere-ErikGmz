@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative './test_format_cipher_code'
 require_relative '../../src/classes/format_cipher_code'
+require_relative './test_format_cipher_code'
 
 # Class to test FormatCipherCode class behavior with message setter methods.
 class TestFormatCipherCodeSetters < TestArgumentTypes
