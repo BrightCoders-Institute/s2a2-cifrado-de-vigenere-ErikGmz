@@ -20,7 +20,7 @@ class TestCipherOriginalMessage < TestArgumentTypes
     test_arguments_with_error_name(argument, TypeError)
   end
 
-  def test_alternative_arguments(argument, first_error_name, second_error_name)
+  def test_alternative_arguments(argument, first_error_name)
     assert_raises first_error_name do
       call_method([0, 1, 2, 3], argument)
     end
@@ -81,9 +81,9 @@ class TestCipherOriginalMessage < TestArgumentTypes
   end
 
   def test_structure_arguments
-    test_alternative_arguments([true, true, true, true], TypeError, ArgumentError)
-    test_alternative_arguments([[1], [2], [3], [4]], TypeError, ArgumentError)
-    test_alternative_arguments([{ a: 1 }, { b: 2 }, { c: 3 }, { d: 4 }], TypeError, ArgumentError)
+    test_alternative_arguments([true, true, true, true], TypeError)
+    test_alternative_arguments([[1], [2], [3], [4]], TypeError)
+    test_alternative_arguments([{ a: 1 }, { b: 2 }, { c: 3 }, { d: 4 }], TypeError)
     test_arguments_with_error_name(:A, StandardError)
   end
 

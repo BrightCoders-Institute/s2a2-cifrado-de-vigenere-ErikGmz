@@ -10,6 +10,7 @@ Programa para generar un mensaje encriptado a partir de una cadena de texto y co
 - Tecnologías.
 - Cómo instalar y ejecutar el proyecto.
 - Cómo ejecutar las pruebas del proyecto.
+- Cómo ejecutar Rubocop en el proyecto.
 - Créditos.
 
 ## 🔧 Tecnologías
@@ -69,7 +70,7 @@ Programa para generar un mensaje encriptado a partir de una cadena de texto y co
 >   1 gem installed
 >```
 >
->_**2.** Ejecutar directamente los archivos con las pruebas de interés._
+>_**2.** Ejecutar directamente desde el directorio del proyecto los archivos con las pruebas de interés._
 >```
 >$ ruby .\test\vigenere_cipher\test_vigenere_cipher.rb
 >   Run options: --seed 26294
@@ -93,6 +94,26 @@ Programa para generar un mensaje encriptado a partir de una cadena de texto y co
 >   Finished in 0.033684s, 356.2543 runs/s, 682.8208 assertions/s.
 >
 >   12 runs, 23 assertions, 0 failures, 0 errors, 0 skips
+>```
+
+## 🔍 Cómo ejecutar Rubocop en el proyecto
+>_**1.** Instalar la gema de Rubocop._
+>```
+>$ gem install rubocop
+>   rbenv: Rehash executable 'rubocop' for gem 'rubocop'
+>   Successfully installed rubocop-1.59.0
+>   Parsing documentation for rubocop-1.59.0
+>   Done installing documentation for rubocop after 14 seconds
+>   1 gem installed
+>```
+>
+>_**2.** Ejecutar Rubocop en el directorio del proyecto._
+>```
+>$ rubocop
+>   Inspecting 23 files
+>   .......................
+>   
+>   23 files inspected, no offenses detected
 >```
 
 ## 💻 Créditos
