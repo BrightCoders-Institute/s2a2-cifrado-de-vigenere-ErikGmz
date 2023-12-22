@@ -10,6 +10,7 @@ Programa para generar un mensaje encriptado a partir de una cadena de texto y co
 - Tecnologías.
 - Cómo instalar y ejecutar el proyecto.
 - Cómo ejecutar las pruebas del proyecto.
+- Cómo ejecutar Rubocop en el proyecto.
 - Créditos.
 
 ## 🔧 Tecnologías
@@ -69,7 +70,7 @@ Programa para generar un mensaje encriptado a partir de una cadena de texto y co
 >   1 gem installed
 >```
 >
->_**2.** Ejecutar directamente los archivos con las pruebas de interés._
+>_**2.** Ejecutar directamente desde el directorio del proyecto los archivos con las pruebas de interés._
 >```
 >$ ruby .\test\vigenere_cipher\test_vigenere_cipher.rb
 >   Run options: --seed 26294
@@ -93,6 +94,51 @@ Programa para generar un mensaje encriptado a partir de una cadena de texto y co
 >   Finished in 0.033684s, 356.2543 runs/s, 682.8208 assertions/s.
 >
 >   12 runs, 23 assertions, 0 failures, 0 errors, 0 skips
+>```
+
+## 🔍 Cómo ejecutar Rubocop en el proyecto
+>_**1.** Instalar la gema de Rubocop._
+>```
+>$ gem install rubocop
+>   rbenv: Rehash executable 'rubocop' for gem 'rubocop'
+>   Successfully installed rubocop-1.59.0
+>   Parsing documentation for rubocop-1.59.0
+>   Done installing documentation for rubocop after 14 seconds
+>   1 gem installed
+>```
+>
+>_**2.** Ejecutar Rubocop en el directorio del proyecto._
+>```
+>$ rubocop
+>   Inspecting 23 files
+>   .......................
+>   
+>   23 files inspected, no offenses detected
+>
+>$ rubocop -L
+>   Gemfile
+>   src/classes/character_to_integer_encoding.rb
+>   src/classes/format_cipher_code.rb
+>   src/classes/integer_to_character_decoding.rb
+>   src/classes/vigenere_cipher.rb
+>   src/inheritance_classes/arguments_data_validation.rb
+>   src/inheritance_classes/encoding_control.rb
+>   src/main.rb
+>   test/character_to_integer_encoding/test_character_to_integer_encoding.rb
+>   test/character_to_integer_encoding/test_character_to_integer_encoding_setter.rb
+>   test/character_to_integer_encoding/test_leave_original_if_not_alphabetic_method.rb
+>   test/format_cipher_code/test_check_arguments_validity_method.rb
+>   test/format_cipher_code/test_check_cipher_code_validity_method.rb
+>   test/format_cipher_code/test_format_cipher_code.rb
+>   test/format_cipher_code/test_format_cipher_code_setter.rb
+>   test/inheritance_test_classes/test_argument_types.rb
+>   test/integer_to_character_decoding/test_integer_to_character_decoding.rb
+>   test/integer_to_character_decoding/test_integer_to_character_decoding_setter.rb
+>   test/integer_to_character_decoding/test_leave_original_if_not_alphabetic_method.rb
+>   test/vigenere_cipher/test_cipher_original_message_method.rb
+>   test/vigenere_cipher/test_decode_numbers_array_method.rb
+>   test/vigenere_cipher/test_encode_string_to_numbers_method.rb
+>   test/vigenere_cipher/test_vigenere_cipher.rb
 >```
 
 ## 💻 Créditos
