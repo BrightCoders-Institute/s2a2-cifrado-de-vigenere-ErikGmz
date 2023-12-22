@@ -33,7 +33,7 @@ class VigenereCipher
   end
 
   def cipher_original_message(integers_message, integers_code)
-    raise ArgumentError if integers_message.length < integers_code.length
+    raise ArgumentError, 'The message is shorter than code.' if integers_message.length < integers_code.length
 
     integers_code_index = -1
     integers_message.map do |integer|

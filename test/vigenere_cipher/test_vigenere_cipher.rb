@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'minitest/autorun'
 require_relative '../../src/classes/vigenere_cipher'
 require_relative '../inheritance_test_classes/test_argument_types'
 

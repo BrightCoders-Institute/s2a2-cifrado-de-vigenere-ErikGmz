@@ -36,14 +36,16 @@ class FormatCipherCode < ArgumentsDataValidation
 
   def check_arguments_validity(*arguments)
     arguments.each do |argument|
-      raise TypeError unless argument.is_a?(String)
+      raise TypeError, "The argument #{argument} is not a String." unless argument.is_a?(String)
 
-      raise ArgumentError if argument.empty?
+      raise ArgumentError, 'The argument is a empty String.' if argument.empty?
     end
   end
 
   def check_cipher_code_validity(cipher_code)
-    raise ArgumentError if cipher_code.upcase.gsub(/[^A-ZÑ]+/, '').empty?
+    if cipher_code.upcase.gsub(/[^A-ZÑ]+/, '').empty?
+      raise ArgumentError, 'The code only has special characters or is not a String.'
+    end
   end
 
   def generate_formatted_cipher_code!

@@ -28,7 +28,7 @@ class TestCheckArgumentsValidity < TestArgumentTypes
 
   public
 
-  def test_regular_strings
+  def test_original_examples
     refute_nil call_method('Hola', 'SECRETO', '+__Hola+__', '    Ruby 1.9')
   end
 
