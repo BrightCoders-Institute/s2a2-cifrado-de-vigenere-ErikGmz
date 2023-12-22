@@ -114,6 +114,31 @@ Programa para generar un mensaje encriptado a partir de una cadena de texto y co
 >   .......................
 >   
 >   23 files inspected, no offenses detected
+>
+>$ rubocop -L
+>   Gemfile
+>   src/classes/character_to_integer_encoding.rb
+>   src/classes/format_cipher_code.rb
+>   src/classes/integer_to_character_decoding.rb
+>   src/classes/vigenere_cipher.rb
+>   src/inheritance_classes/arguments_data_validation.rb
+>   src/inheritance_classes/encoding_control.rb
+>   src/main.rb
+>   test/character_to_integer_encoding/test_character_to_integer_encoding.rb
+>   test/character_to_integer_encoding/test_character_to_integer_encoding_setter.rb
+>   test/character_to_integer_encoding/test_leave_original_if_not_alphabetic_method.rb
+>   test/format_cipher_code/test_check_arguments_validity_method.rb
+>   test/format_cipher_code/test_check_cipher_code_validity_method.rb
+>   test/format_cipher_code/test_format_cipher_code.rb
+>   test/format_cipher_code/test_format_cipher_code_setter.rb
+>   test/inheritance_test_classes/test_argument_types.rb
+>   test/integer_to_character_decoding/test_integer_to_character_decoding.rb
+>   test/integer_to_character_decoding/test_integer_to_character_decoding_setter.rb
+>   test/integer_to_character_decoding/test_leave_original_if_not_alphabetic_method.rb
+>   test/vigenere_cipher/test_cipher_original_message_method.rb
+>   test/vigenere_cipher/test_decode_numbers_array_method.rb
+>   test/vigenere_cipher/test_encode_string_to_numbers_method.rb
+>   test/vigenere_cipher/test_vigenere_cipher.rb
 >```
 
 ## 💻 Créditos
