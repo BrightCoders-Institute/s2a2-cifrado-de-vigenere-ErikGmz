@@ -43,9 +43,7 @@ class FormatCipherCode < ArgumentsDataValidation
   end
 
   def check_cipher_code_validity(cipher_code)
-    if cipher_code.upcase.gsub(/[^A-ZÑ]+/, '').empty?
-      raise ArgumentError, 'The code only has special characters or is not a String.'
-    end
+    raise ArgumentError, 'The code only has special characters.' if cipher_code.upcase.gsub(/[^A-ZÑ]+/, '').empty?
   end
 
   def generate_formatted_cipher_code!
