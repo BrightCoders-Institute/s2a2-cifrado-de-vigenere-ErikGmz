@@ -12,6 +12,7 @@ Programa para generar un mensaje encriptado a partir de una cadena de texto y co
 - Cómo ejecutar las pruebas del proyecto.
 - Cómo ejecutar Rubocop en el proyecto.
 - Créditos.
+- Badges.
 
 ## 🔧 Tecnologías
 - Ruby.
@@ -141,5 +142,10 @@ Programa para generar un mensaje encriptado a partir de una cadena de texto y co
 >   test/vigenere_cipher/test_vigenere_cipher.rb
 >```
 
-## 💻 Créditos
+## 🕹️ Créditos
 - **[ErikGmz](https://github.com/ErikGmz)**
+
+## 💻 Badges
+![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)
